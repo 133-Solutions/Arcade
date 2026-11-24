@@ -1,0 +1,17 @@
+# Installed packages
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor and system files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local settings and secrets
+.env
+.env.*
+.claude/settings.local.json
