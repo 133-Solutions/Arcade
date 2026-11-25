@@ -1,0 +1,32 @@
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #14161f;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+canvas {
+  display: block;
+  touch-action: none;
+}
+
+.back {
+  position: fixed;
+  top: max(0.5rem, env(safe-area-inset-top));
+  left: 0.5rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.12);
+  color: #f4f5fa;
+  text-decoration: none;
+  font-size: 1rem;
+}
