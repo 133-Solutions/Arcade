@@ -1,0 +1,62 @@
+:root {
+  --bg: #14161f;
+  --surface: #222636;
+  --text: #f4f5fa;
+  --accent: #4fc3f7;
+  --brick: #ff8a65;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.arcade {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+h1 {
+  margin: 0 0 1.5rem;
+  font-size: 2rem;
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-height: 11rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.tile:focus-visible { outline: 3px solid var(--accent); }
+
+.tile-art {
+  flex: 1;
+  border-radius: 0.5rem;
+  background:
+    linear-gradient(var(--accent), var(--accent)) center 85% / 40% 8% no-repeat,
+    repeating-linear-gradient(90deg, var(--brick) 0 22%, transparent 22% 25%) top 15% left 0 / 100% 12% no-repeat,
+    var(--bg);
+}
