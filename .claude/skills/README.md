@@ -2,7 +2,7 @@
 
 These 17 skill folders are copied unchanged from [mattpocock/skills](https://github.com/mattpocock/skills) at commit `59db609eb1e18aaf59b63284d0e52255aff0c63c` (Oct 27, 2026), the same reviewed commit the friday-table repo uses. Codex-only `agents/openai.yaml` files are left out.
 
-They live in this repo, rather than as a user-level plugin, so every Claude Code session that opens BlockBreak gets them, cloud sessions included, and no other project does. They're pinned, so their instructions only change when someone reviews an update.
+They live in this repo, rather than as a user-level plugin, so every Claude Code session that opens the Arcade repo gets them, cloud sessions included, and no other project does. They're pinned, so their instructions only change when someone reviews an update.
 
 ## What's here
 

@@ -1,6 +1,6 @@
-# BlockBreak
+# Arcade
 
-A small brick-breaker game for the browser: move the paddle, keep the ball in play, and break every brick.
+Small browser games, built one pull request at a time. The first is BlockBreak, a brick-breaker: move the paddle, keep the ball in play, and break every brick.
 
 It's plain HTML, CSS and JavaScript with no build step, so it will run by opening `index.html`.
 
