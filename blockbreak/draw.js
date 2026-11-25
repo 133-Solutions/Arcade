@@ -23,8 +23,9 @@ const BlockBreakDraw = (() => {
     }
 
     // Turns a point on the screen into a position along the paddle's axis, in play-area units.
-    function toPaddleAxis(clientX) {
-      return (clientX - canvas.getBoundingClientRect().left) / scale;
+    // The paddle's axis runs across the screen for now; this is the one place that knows that.
+    function toPaddleAxis(point) {
+      return (point.clientX - canvas.getBoundingClientRect().left) / scale;
     }
 
     function draw(game) {

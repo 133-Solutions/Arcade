@@ -3,34 +3,36 @@
 
 const BlockBreakControls = (() => {
   const KEY_SPEED = 90; // play-area units per second while an arrow key is held
+  const KEY_DIRECTIONS = { ArrowLeft: -1, ArrowRight: 1 }; // -1 and 1 are the two ways along the paddle's axis
 
   function attach(canvas, view, onMovePaddle) {
-    const held = { left: false, right: false };
+    const held = new Set();
 
-    function followPointer(event) {
-      if (event.pointerType === 'mouse' || event.buttons > 0) {
-        onMovePaddle(view.toPaddleAxis(event.clientX));
-      }
+    function moveTo(event) {
+      onMovePaddle(view.toPaddleAxis(event));
     }
 
     canvas.addEventListener('pointerdown', (event) => {
       canvas.setPointerCapture(event.pointerId);
-      onMovePaddle(view.toPaddleAxis(event.clientX));
+      moveTo(event);
     });
-    canvas.addEventListener('pointermove', followPointer);
+    // On the window, so a fast mouse that leaves the canvas still takes the paddle to the edge.
+    window.addEventListener('pointermove', (event) => {
+      if (event.pointerType === 'mouse' || event.buttons > 0) moveTo(event);
+    });
 
     window.addEventListener('keydown', (event) => {
-      if (event.key === 'ArrowLeft') held.left = true;
-      if (event.key === 'ArrowRight') held.right = true;
+      if (event.key in KEY_DIRECTIONS) held.add(event.key);
     });
     window.addEventListener('keyup', (event) => {
-      if (event.key === 'ArrowLeft') held.left = false;
-      if (event.key === 'ArrowRight') held.right = false;
+      held.delete(event.key);
     });
 
     // How far the arrow keys move the paddle in `seconds`, along its axis.
     function keyMovement(seconds) {
-      return ((held.right ? 1 : 0) - (held.left ? 1 : 0)) * KEY_SPEED * seconds;
+      let direction = 0;
+      for (const key of held) direction += KEY_DIRECTIONS[key];
+      return direction * KEY_SPEED * seconds;
     }
 
     return { keyMovement };

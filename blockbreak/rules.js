@@ -5,8 +5,8 @@
 
 const BlockBreakRules = (() => {
   const STARTING_LIVES = 3;
-  const AREA = { width: 100, height: 150 };
-  const PADDLE = { width: 20, height: 3, y: 140 };
+  const AREA = { width: 100, height: 200 }; // tall, to fill a phone held upright
+  const PADDLE = { width: 20, height: 3, y: 188 };
 
   function createGame() {
     return {
