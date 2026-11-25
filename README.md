@@ -4,6 +4,16 @@ Small browser games, built one pull request at a time. The first is BlockBreak, 
 
 It's plain HTML, CSS and JavaScript with no build step, so it will run by opening `index.html`.
 
+## Running the tests
+
+The tests check the game's rules and need only [Node.js](https://nodejs.org/) 22 or later, with no packages to install:
+
+```
+node --test
+```
+
+The same command runs automatically on every pull request, and the pull request shows a green check when every test passes.
+
 ## How this repo is built
 
 Every change goes the same way, which is the point of this project:
