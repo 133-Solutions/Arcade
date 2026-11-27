@@ -86,3 +86,11 @@ test('a ball that gets past the paddle goes back onto it and waits', () => {
   assert.equal(ball.x, paddle.x);
   assert.equal(ball.y + ball.radius, paddle.y);
 });
+
+test('the ball bounces off the end of the paddle as it moves past it', () => {
+  // Crosses the paddle's top right at its right-hand end, then would carry on past it.
+  const game = playingWith({ x: 58, y: 184, vx: 90, vy: 90 });
+  const { ball } = step(game, 0.05);
+
+  assert.ok(ball.vy < 0);
+});

@@ -9,6 +9,7 @@ const BlockBreakRules = (() => {
   const PADDLE = { width: 20, height: 3, y: 188 };
   const BALL_RADIUS = 2;
   const BALL_SPEED = 90; // play-area units per second
+  const LAUNCH_DIRECTION = { x: 0.6, y: -0.8 }; // up and to the right, one unit long
 
   function createGame() {
     const paddle = { ...PADDLE, x: AREA.width / 2 };
@@ -39,7 +40,11 @@ const BlockBreakRules = (() => {
   // Sends a waiting ball up and away, at an angle, and starts play.
   function launch(game) {
     if (game.phase !== 'waiting') return game;
-    const ball = { ...game.ball, vx: BALL_SPEED * 0.6, vy: -BALL_SPEED * 0.8 };
+    const ball = {
+      ...game.ball,
+      vx: BALL_SPEED * LAUNCH_DIRECTION.x,
+      vy: BALL_SPEED * LAUNCH_DIRECTION.y,
+    };
     return { ...game, phase: 'playing', ball };
   }
 
@@ -65,7 +70,10 @@ const BlockBreakRules = (() => {
     const crossedTop = after.vy > 0
       && before.y + before.radius <= paddle.y
       && after.y + after.radius >= paddle.y;
-    const overPaddle = Math.abs(after.x - paddle.x) <= paddle.width / 2 + after.radius;
+    // Where the ball was along the paddle at the moment its bottom reached the paddle's top.
+    const travelled = (paddle.y - (before.y + before.radius)) / (after.y - before.y);
+    const crossingX = before.x + (after.x - before.x) * travelled;
+    const overPaddle = Math.abs(crossingX - paddle.x) <= paddle.width / 2 + after.radius;
     if (!crossedTop || !overPaddle) return after;
     return { ...after, y: paddle.y - after.radius, vy: -Math.abs(after.vy) };
   }

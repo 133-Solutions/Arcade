@@ -5,7 +5,7 @@
 const BlockBreakControls = (() => {
   const KEY_SPEED = 90; // play-area units per second while an arrow key is held
   const KEY_DIRECTIONS = { ArrowLeft: -1, ArrowRight: 1 }; // -1 and 1 are the two ways along the paddle's axis
-  const LAUNCH_KEYS = [' ', 'Enter', 'ArrowUp', 'ArrowLeft', 'ArrowRight'];
+  const LAUNCH_KEYS = [' ', 'Enter', 'ArrowUp']; // not the paddle's keys, so you can line up first
 
   function attach(canvas, view, { onMovePaddle, onLaunch }) {
     const held = new Set();
