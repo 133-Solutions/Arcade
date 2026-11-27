@@ -4,6 +4,7 @@ const BlockBreakDraw = (() => {
   const COLOURS = {
     background: '#1d2030',
     paddle: '#4fc3f7',
+    ball: '#f4f5fa',
   };
 
   // Sizes the canvas to the biggest play area that fits the screen,
@@ -35,6 +36,12 @@ const BlockBreakDraw = (() => {
       const { paddle } = game;
       context.fillStyle = COLOURS.paddle;
       context.fillRect(paddle.x - paddle.width / 2, paddle.y, paddle.width, paddle.height);
+
+      const { ball } = game;
+      context.fillStyle = COLOURS.ball;
+      context.beginPath();
+      context.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+      context.fill();
     }
 
     fit();
